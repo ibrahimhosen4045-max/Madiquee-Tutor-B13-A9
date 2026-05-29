@@ -1,40 +1,149 @@
-"use client"
+"use client";
 
-import React, { useEffect, useRef } from 'react'
-import image1 from '@/assets/page-22.jpg'
-import gsap from 'gsap'
+import React, { useEffect, useRef } from "react";
+
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade, Autoplay, Pagination } from "swiper/modules";
+
+
+// GSAP
+import gsap from "gsap";
+
+// styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/pagination";
+
+import image1 from "@/assets/page-22.jpg";
+import image2 from "@/assets/page-1.jpg";
+import image3 from "@/assets/page-11.jpg";
+import { ArrowRight } from "@gravity-ui/icons";
+
 
 const Banner = () => {
-  const titleRet = useRef(null)
-  const subtitleRef = useRef(null)
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonRef = useRef(null)
+  const expariensRef = useRef(null)
 
-  useEffect(()=> {
-    gsap.from(titleRet.current, {
-      y: -100,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out",
-    });
-    gsap.from(subtitleRef.current, {
-      x: -150,
-      opacity: 0,
-      duration: 1.2,
-      delay: 0.3,
-      ease: "power3.out"
-    })
-  },[])
+  const slides = [image1, image2, image3];
+
+  // 🔥 GSAP animation function
+  const animateText = () => {
+    gsap.fromTo(
+      titleRef.current,
+      { y: -80, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    );
+
+    gsap.fromTo(
+      textRef.current,
+      { x: -80, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power3.out" }
+    );
+
+    gsap.fromTo(
+      buttonRef.current,
+      {x: -80, opacity: 0},
+      {x: 0, opacity: 1, duration: 1, delay: 0.4, ease: "power3.out"}
+    );
+    
+    gsap.fromTo(
+    expariensRef.current,
+    { y: 80, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1, delay: 0.6, ease: "power3.out" }
+  );
+  };
+
+  useEffect(() => {
+    animateText();
+  }, []);
+
   return (
-    <div className='w-full h-[80vh] bg-cover bg-right' style={{backgroundImage: `url(${image1.src})`}}>
-      <div className='w-full h-full bg-linear-to-bl from-black/30 via-black/50 to-black/85 text-center flex items-center justify-center flex-col'>
-        <h1
-        ref={titleRet}
-         className='font-bold text-white text-6xl'>hello world</h1>
-        <p
-        ref={subtitleRef}
-         className='text-2xl text-white '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, blanditiis!</p>
+    <div className="w-full h-[80vh] relative overflow-hidden">
+      
+      <Swiper
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        speed={500}
+        pagination={{ clickable: true }}
+        modules={[EffectFade, Autoplay, Pagination]}
+        className="h-full"
+        onSlideChange={() => animateText()} // 🔥 important
+      >
+        {slides.map((img, index) => (
+          <SwiperSlide key={index}>
+            <div
+              className="w-full h-[80vh] bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${img.src})`,
+              }}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      
+
+      {/* Overlay Text */}
+      <div className="absolute top-0 left-0 w-full h-full flex items-center bg-linear-to-b from-black/60 via-black/50 to-black/60 z-10">
+      
+        <div className="w-11/12 lg:w-7xl mx-auto text-white">
+          <h1 ref={titleRef} className="text-[50px] font-semibold">
+            Learn  Online with Professional <br /> Instructors
+          </h1>
+
+          <p ref={textRef} className="text-sm mt-4 max-w-xl">
+            Education can be thought og as the transmission of the value and accumulated knowledge of a society. in this sense, it is equivalent.
+          </p>
+
+          <button ref={buttonRef} className="cursor-pointer bg-[#65A662] px-6 py-3 rounded-full text-white font-medium group my-6">
+            <div className="relative overflow-hidden h-6">
+
+              <p className="transform transition-all duration-[1.125s] ease-out-expo group-hover:-translate-y-6">
+                GET START
+              </p>
+
+              <p className="absolute top-6 left-0 w-full transform transition-all duration-[1.125s] ease-out-expo group-hover:top-0">
+                TUTOR<ArrowRight />
+              </p>
+
+            </div>
+          </button>
+
+          <div ref={expariensRef} className="flex gap-5 flex-wrap relative top-15">
+            <div className="flex gap-2 items-center border-r pr-5">
+              <h1 className="text-[40px] font-medium text-[#65A662]">10</h1>
+              <div className=" ">
+                <h1 className="text-[22px] leading-5">Years</h1>
+                <p className="text-xs">of excellence in education</p>
+              </div>
+            </div>
+            <div className="flex gap-2 items-center border-r pr-5">
+              <h1 className="text-[40px] font-medium text-[#65A662]">96%</h1>
+              <div className=" ">
+                <h1 className="text-[22px] leading-5">Recommended</h1>
+                <p className="text-xs">Recommended by students</p>
+              </div>
+            </div>
+            <div className="flex gap-2 items-center ">
+              <h1 className="text-[40px] font-medium text-[#65A662]">40K</h1>
+              <div className=" ">
+                <h1 className="text-[22px] leading-5">Students</h1>
+                <p className="text-xs">from 100 countries</p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

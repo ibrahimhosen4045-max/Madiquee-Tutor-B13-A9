@@ -1,0 +1,51 @@
+import React from 'react'
+import { GraduationCap} from '@gravity-ui/icons';
+import Link from 'next/link';
+import ThemeToggoling from './sheared/ThemeToggoling';
+
+const Nevber = () => {
+    const meno = <>
+        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/'}>Home</Link></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/tutors'}>Tutors</Link></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/addTutor'}>Add Tutor</Link></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/myTutors'}>My Tutors</Link></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/myBookingSession'}>My Booked Sessions</Link></li>
+    </>
+  return (
+    <div className=' absolute top-5 left-[50%] translate-x-[-50%] w-7xl flex justify-between z-50 items-center'>
+        {/* start */}
+      <div>
+        <Link href={'/'}>
+        <button className='text-3xl font-medium text-white flex items-center gap-2 cursor-pointer'>
+       <GraduationCap style={{height: "30px", width: "30px"}} className='text-[#65A662]'/> MediQueue
+      </button>
+        </Link>
+      </div>
+      {/* middle */}
+      <div>
+        <ul className='flex gap-3 text-white'>
+            {meno}
+        </ul>
+      </div>
+      {/* end */}
+      <div className='flex items-center gap-2'>
+        <ThemeToggoling></ThemeToggoling>
+        <button  className="cursor-pointer bg-[#65A662] px-6 py-3 rounded-full text-white font-medium group ">
+            <div className="relative overflow-hidden h-6">
+
+              <p className="transform transition-all duration-[1.125s] ease-out-expo group-hover:-translate-y-6">
+                GET START
+              </p>
+
+              <p className="absolute top-6 left-0 w-full transform transition-all duration-[1.125s] ease-out-expo group-hover:top-0">
+                LOGIN
+              </p>
+
+            </div>
+          </button>
+      </div>
+    </div>
+  )
+}
+
+export default Nevber
