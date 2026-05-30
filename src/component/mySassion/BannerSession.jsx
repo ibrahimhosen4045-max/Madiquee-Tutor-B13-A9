@@ -50,7 +50,7 @@ const BannerSession = () => {
     style={{backgroundImage: `url(${image.src})`}}
     >
       <div className='w-full h-full bg-linear-to-b from-black/65 via-black/55 to-black/65 z-10 flex items-center '>
-        <div className=' w-11/12 lg:w-7xl mx-auto z-20'>
+        <div className=' w-11/12 xl:w-7xl mx-auto z-20'>
             <h1 ref={titleRef} className='text-white text-4xl font-medium'>My Booked Sessions</h1>
             <p ref={desCripRef} className='flex items-center gap-3 text-white py-3'>
                 <Link href={'/'} className='hover:text-[#65A662]'>Home</Link>

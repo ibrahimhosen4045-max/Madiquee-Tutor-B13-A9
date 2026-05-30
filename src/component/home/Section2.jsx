@@ -16,44 +16,50 @@ const Section2 = () => {
  useEffect(() => {
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from(".offer-top", {
-    y: -80,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      start: "top 55%",
-      toggleActions: "play none none none",
-    }
-  });
+  const ctx = gsap.context(() => {
+    gsap.from(".offer-top", {
+      y: -80,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 55%",
+        toggleActions: "play none none none",
+      },
+    });
 
-  gsap.from(".offer-heading", {
-    x: -150,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.3,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      start: "top 50%",
-      toggleActions: "play none none none",
-    }
-  });
+    gsap.from(".offer-heading", {
+      x: -150,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.3,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 50%",
+        toggleActions: "play none none none",
+      },
+    });
 
-  gsap.from(".offer-btn", {
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.25,
-    ease: "back.out(1.7)",
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      start: "top 45%",
-      toggleActions: "play none none none",
-    }
-  });
+    gsap.from(".offer-btn", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.25,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 45%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, sectionRef);
 
+  return () => {
+    ctx.revert();
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  };
 }, []);
 
   return (
@@ -63,24 +69,25 @@ const Section2 = () => {
       style={{ backgroundImage: `url(${bgimage.src})` }}
     >
       <div
-        className='w-full h-full bg-cover bg-center text-white flex flex-col items-center justify-center gap-5 overflow-hidden'
+        className='w-full h-full bg-cover bg-center text-white flex flex-col items-center justify-center gap-5 overflow-hidden 
+         relative'
         style={{ backgroundImage: `url(${overlay.src})` }}
       >
-
+        
         <h1 className='offer-top flex items-center gap-1 uppercase'>
           <Book width={20} height={20} />
           Are You Ready For This Offer
         </h1>
 
-        <h1 className='offer-heading text-4xl font-bold'>
+        <h1 className='offer-heading text-[26px] md:text-4xl font-bold'>
           50% Offer For Very First 50
         </h1>
 
-        <h1 className='offer-heading text-4xl font-normal'>
+        <h1 className='offer-heading text-[26px] md:text-4xl font-normal'>
           Student’s & Mentors
         </h1>
 
-        <div className='flex flex-wrap gap-2 items-center'>
+        <div className='flex flex-wrap gap-3 items-center justify-center'>
           
           <button className="offer-btn cssbuttons-io-button">
             BECOME A STUDENT

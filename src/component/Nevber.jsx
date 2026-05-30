@@ -13,7 +13,7 @@ const Nevber = () => {
         <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/MyBooked'}>My Booked Sessions</NavLink></li>
     </>
   return (
-    <div className=' absolute top-5 left-[50%] translate-x-[-50%] w-7xl flex justify-between z-50 items-center'>
+    <div className=' absolute top-5 left-[50%] right-[50%]  translate-x-[-50%] container  w-11/12 lg:w-7xl flex justify-between z-50 items-center'>
         {/* start */}
       <div>
         <Link href={'/'}>
@@ -24,7 +24,7 @@ const Nevber = () => {
       </div>
       {/* middle */}
       <div>
-        <ul className='flex gap-3 text-white'>
+        <ul className='lg:flex gap-3 text-white lg:text-[14px] xl:text-[16px] hidden'>
             {meno}
         </ul>
       </div>

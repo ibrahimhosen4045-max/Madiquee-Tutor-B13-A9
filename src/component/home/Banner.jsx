@@ -92,7 +92,7 @@ const Banner = () => {
       {/* Overlay Text */}
       <div className="absolute top-0 left-0 w-full h-full flex items-center bg-linear-to-b from-black/60 via-black/50 to-black/60 z-10">
       
-        <div className="w-11/12 lg:w-7xl mx-auto text-white">
+        <div className="container w-11/12 xl:w-7xl mx-auto text-white">
           <h1 ref={titleRef} className="text-[50px] font-semibold">
             Learn  Online with Professional <br /> Instructors
           </h1>

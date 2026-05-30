@@ -11,10 +11,10 @@ import './home.css'
 const Section1 = () => {
   const sectionRef = useRef(null)
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+ useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger);
 
-    // LEFT CARD (smooth delayed trigger)
+  const ctx = gsap.context(() => {
     gsap.from(".card-left", {
       x: -120,
       opacity: 0,
@@ -25,10 +25,9 @@ const Section1 = () => {
         trigger: sectionRef.current,
         start: "top 70%",
         toggleActions: "play none none none",
-      }
-    })
+      },
+    });
 
-    // RIGHT CARD
     gsap.from(".card-right", {
       x: 120,
       opacity: 0,
@@ -39,10 +38,9 @@ const Section1 = () => {
         trigger: sectionRef.current,
         start: "top 70%",
         toggleActions: "play none none none",
-      }
-    })
+      },
+    });
 
-    // IMAGE POP (slightly later)
     gsap.from(".sec1-img", {
       scale: 0.7,
       opacity: 0,
@@ -52,21 +50,26 @@ const Section1 = () => {
         trigger: sectionRef.current,
         start: "top 75%",
         toggleActions: "play none none none",
-      }
-    })
+      },
+    });
+  }, sectionRef);
 
-  }, [])
+  return () => {
+    ctx.revert(); // cleanup on route change
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  };
+}, []);
 
   return (
     <div ref={sectionRef} className='pb-20'>
 
       {/* TITLE (NO ANIMATION) */}
-      <div className='text-center pt-20 pb-10 flex flex-col items-center gap-4'>
+      <div className='w-11/12 mx-auto text-center pt-20 pb-10 flex flex-col items-center gap-4'>
         <h2 className='font-semibold text-[#40863c]'>
           INSTRUCTORS & STUDENTS
         </h2>
 
-        <h1 className='text-[40px] font-semibold'>
+        <h1 className='text-[28px] md:text-[40px] font-semibold'>
           What You Looking For?
         </h1>
 
@@ -76,7 +79,7 @@ const Section1 = () => {
       </div>
 
       <div className='w-11/12 lg:max-w-7xl mx-auto'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-15 pt-45'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-50 md:gap-6 lg:gap-15 pt-45'>
 
           {/* LEFT */}
           <div className='card-left flex flex-col gap-6 items-center text-center px-15 pt-25 pb-10 bg-[#40863c]/10 rounded-xl relative'>
