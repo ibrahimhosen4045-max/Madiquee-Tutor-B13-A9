@@ -1,12 +1,15 @@
 import Banner from "@/component/home/Banner";
-import ThemeToggoling from "@/component/sheared/ThemeToggoling";
+import Section1 from "@/component/home/Section1";
+import Section2 from "@/component/home/Section2";
+
 
 export default function Home() {
   
   return (
     <div className="">
-      {/* <ThemeToggoling></ThemeToggoling> */}
       <Banner/>
+      <Section1></Section1>
+      <Section2></Section2>
     </div>
   );
 }

@@ -2,14 +2,15 @@ import React from 'react'
 import { GraduationCap} from '@gravity-ui/icons';
 import Link from 'next/link';
 import ThemeToggoling from './sheared/ThemeToggoling';
+import NavLink from './sheared/NavLink';
 
 const Nevber = () => {
     const meno = <>
-        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/'}>Home</Link></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/tutors'}>Tutors</Link></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/addTutor'}>Add Tutor</Link></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/myTutors'}>My Tutors</Link></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><Link href={'/myBookingSession'}>My Booked Sessions</Link></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/'}>Home</NavLink></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/tutor'}>Tutors</NavLink></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/addTutors'}>Add Tutor</NavLink></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/myTutor'}>My Tutors</NavLink></li>
+        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/MyBooked'}>My Booked Sessions</NavLink></li>
     </>
   return (
     <div className=' absolute top-5 left-[50%] translate-x-[-50%] w-7xl flex justify-between z-50 items-center'>
