@@ -1,8 +1,11 @@
+"use client"
+
 import React from 'react'
 import { GraduationCap} from '@gravity-ui/icons';
 import Link from 'next/link';
 import ThemeToggoling from './sheared/ThemeToggoling';
 import NavLink from './sheared/NavLink';
+import {Button, Dropdown, Label} from "@heroui/react";
 
 const Nevber = () => {
     const meno = <>
@@ -13,7 +16,7 @@ const Nevber = () => {
         <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/MyBooked'}>My Booked Sessions</NavLink></li>
     </>
   return (
-    <div className=' absolute top-5 left-[50%] right-[50%]  translate-x-[-50%] container  w-11/12 lg:w-7xl flex justify-between z-50 items-center'>
+    <div className='  absolute top-5 left-[50%] right-[50%]  translate-x-[-50%] w-11/12  xl:w-7xl flex justify-between z-50 items-center'>
         {/* start */}
       <div>
         <Link href={'/'}>
@@ -44,9 +47,24 @@ const Nevber = () => {
 
             </div>
           </button>
+           <Dropdown>
+      <Button aria-label="Menu" variant="secondary">
+        Actions
+      </Button>
+      <Dropdown.Popover>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+          <Dropdown.Item id="new-file" textValue="New file">
+            <Label>New file</Label>
+          </Dropdown.Item>
+          
+        </Dropdown.Menu>
+      </Dropdown.Popover>
+    </Dropdown>
       </div>
     </div>
   )
 }
 
 export default Nevber
+
+

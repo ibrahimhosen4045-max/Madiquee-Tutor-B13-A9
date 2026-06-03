@@ -88,7 +88,7 @@ const Section3 = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-[600px] flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 overflow-hidden bg-white"
+      className="relative w-full min-h-[600px] flex items-center justify-center py-16 px-4 md:px-8 lg:px-16 overflow-hidden "
     >
       <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
 
@@ -118,11 +118,11 @@ const Section3 = () => {
             MORE ABOUT OUR COMPANY
           </span>
 
-          <h2 className="about-heading text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+          <h2 className="about-heading text-3xl md:text-4xl font-bold  leading-tight">
             About Acadu Company
           </h2>
 
-          <p className="about-content text-slate-600 text-sm leading-relaxed max-w-2xl">
+          <p className="about-content  text-sm leading-relaxed max-w-2xl">
             Synergistically visualize alternative content before cross functional core Rapidiously administer standardized value via focused benefits.
           </p>
 
@@ -133,7 +133,7 @@ const Section3 = () => {
               <CheckCircle2 className="w-6 h-6 text-[#40863c] fill-blue-50" />
               <div>
                 <h4 className="text-lg font-bold">Competitive Rates</h4>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm ">
                   Seamlessly envisioneer tactical data through services.
                 </p>
               </div>
@@ -143,7 +143,7 @@ const Section3 = () => {
               <CheckCircle2 className="w-6 h-6 text-[#40863c] fill-blue-50" />
               <div>
                 <h4 className="text-lg font-bold">Online Certificates</h4>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm ">
                   Seamlessly envisioneer tactical data through services.
                 </p>
               </div>

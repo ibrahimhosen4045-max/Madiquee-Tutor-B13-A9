@@ -61,7 +61,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="w-full h-[80vh] relative overflow-hidden">
+    <div className="w-full h-165 md:h-165 lg:h-170 xl:h-185 relative overflow-hidden">
       
       <Swiper
         effect="fade"
@@ -79,7 +79,7 @@ const Banner = () => {
         {slides.map((img, index) => (
           <SwiperSlide key={index}>
             <div
-              className="w-full h-[80vh] bg-cover bg-center"
+              className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${img.src})`,
               }}
@@ -93,8 +93,8 @@ const Banner = () => {
       <div className="absolute top-0 left-0 w-full h-full flex items-center bg-linear-to-b from-black/60 via-black/50 to-black/60 z-10">
       
         <div className="container w-11/12 xl:w-7xl mx-auto text-white">
-          <h1 ref={titleRef} className="text-[50px] font-semibold">
-            Learn  Online with Professional <br /> Instructors
+          <h1 ref={titleRef} className="text-[30px] md:text-[40px] lg:text-[50px] font-semibold max-w-4xl">
+            Learn  Online with Professional  Instructors
           </h1>
 
           <p ref={textRef} className="text-sm mt-4 max-w-xl">
@@ -115,25 +115,25 @@ const Banner = () => {
             </div>
           </button>
 
-          <div ref={expariensRef} className="flex gap-5 flex-wrap relative top-15">
-            <div className="flex gap-2 items-center border-r pr-5">
-              <h1 className="text-[40px] font-medium text-[#65A662]">10</h1>
+          <div ref={expariensRef} className="flex gap-5 flex-wrap relative top-10 md:top-15">
+            <div className="flex gap-2 items-center md:border-r pr-5">
+              <h1 className="text-[30px] lg:text-[40px] font-medium text-[#65A662]">10</h1>
               <div className=" ">
-                <h1 className="text-[22px] leading-5">Years</h1>
+                <h1 className="text-[16px] lg:text-[22px] leading-5">Years</h1>
                 <p className="text-xs">of excellence in education</p>
               </div>
             </div>
-            <div className="flex gap-2 items-center border-r pr-5">
-              <h1 className="text-[40px] font-medium text-[#65A662]">96%</h1>
+            <div className="flex gap-2 items-center md:border-r pr-5">
+              <h1 className="text-[30px] lg:text-[40px] font-medium text-[#65A662]">96%</h1>
               <div className=" ">
-                <h1 className="text-[22px] leading-5">Recommended</h1>
+                <h1 className="text-[16px] lg:text-[22px] leading-5">Recommended</h1>
                 <p className="text-xs">Recommended by students</p>
               </div>
             </div>
             <div className="flex gap-2 items-center ">
-              <h1 className="text-[40px] font-medium text-[#65A662]">40K</h1>
+              <h1 className="text-[30px] lg:text-[40px] font-medium text-[#65A662]">40K</h1>
               <div className=" ">
-                <h1 className="text-[22px] leading-5">Students</h1>
+                <h1 className="text-[16px] lg:text-[22px] leading-5">Students</h1>
                 <p className="text-xs">from 100 countries</p>
               </div>
             </div>

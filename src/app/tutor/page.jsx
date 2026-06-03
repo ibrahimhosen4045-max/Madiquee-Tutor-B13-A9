@@ -1,11 +1,26 @@
+
+import AllTutorsCard from '@/component/tutorPage/AllTutorsCard'
 import TutorBan from '@/component/tutorPage/TutorBan'
 import React from 'react'
 
-const Tutors = () => {
+const fetchData = async () => {
+    const res = await fetch(`${process.env.PUBLIC_API_URL}/tutors`)
+    const data = res.json()
+    return data || []
+}
+
+const Tutors = async () => {
+  const tutors = await fetchData()
+  
   return (
     <div>
         <TutorBan></TutorBan>
-      Tutors page
+        <div className=' container w-11/12 xl:w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-20'>
+          {tutors?.map((t) => <AllTutorsCard key={t?._id} details = {t}>
+            
+        </AllTutorsCard>)}
+      </div>
+      
     </div>
   )
 }
