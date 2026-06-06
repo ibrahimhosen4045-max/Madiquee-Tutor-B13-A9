@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import Nevber from "@/component/Nevber";
-import Footer from "@/component/Footer";
+
 
 const montserrat = Montserrat({
 
@@ -24,9 +23,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <Nevber></Nevber>
           {children}  
-          <Footer></Footer>
         </Providers>
       </body>
     </html>

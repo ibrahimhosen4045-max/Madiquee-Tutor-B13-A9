@@ -1,6 +1,7 @@
 
 
 import DetailsBn from '@/component/details/DetailsBn'
+import DetailsCard from '@/component/details/DetailsCard'
 
 import React from 'react'
 
@@ -17,7 +18,7 @@ const page = async ({params}) => {
   return (
     <div>
       <DetailsBn data = {data}></DetailsBn>
-      
+      <DetailsCard details = {data}></DetailsCard>
     </div>
   )
 }

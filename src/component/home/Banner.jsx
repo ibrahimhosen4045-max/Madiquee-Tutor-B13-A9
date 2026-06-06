@@ -101,19 +101,24 @@ const Banner = () => {
             Education can be thought og as the transmission of the value and accumulated knowledge of a society. in this sense, it is equivalent.
           </p>
 
-          <button ref={buttonRef} className="cursor-pointer bg-[#65A662] px-6 py-3 rounded-full text-white font-medium group my-6">
-            <div className="relative overflow-hidden h-6">
+          <button ref={buttonRef} className="offer-btn cssbuttons-io-button mt-10">
+              All Tutors
+              <div className="icon">
+              <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 0h24v24H0z" fill="none"></path>
 
-              <p className="transform transition-all duration-[1.125s] ease-out-expo group-hover:-translate-y-6">
-                GET START
-              </p>
-
-              <p className="absolute top-6 left-0 w-full transform transition-all duration-[1.125s] ease-out-expo group-hover:top-0">
-                TUTOR<ArrowRight />
-              </p>
-
+                <path
+                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                  fill="currentColor"
+                ></path>
+              </svg>
             </div>
-          </button>
+            </button>
 
           <div ref={expariensRef} className="flex gap-5 flex-wrap relative top-10 md:top-15">
             <div className="flex gap-2 items-center md:border-r pr-5">

@@ -1,70 +1,117 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { GraduationCap} from '@gravity-ui/icons';
-import Link from 'next/link';
-import ThemeToggoling from './sheared/ThemeToggoling';
-import NavLink from './sheared/NavLink';
-import {Button, Dropdown, Label} from "@heroui/react";
+import React, { useEffect, useState } from "react";
+import { GraduationCap } from "@gravity-ui/icons";
+import Link from "next/link";
+import ThemeToggoling from "./sheared/ThemeToggoling";
+import NavLink from "./sheared/NavLink";
+import { Button, Dropdown, Label } from "@heroui/react";
 
 const Nevber = () => {
-    const meno = <>
-        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/'}>Home</NavLink></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/tutor'}>Tutors</NavLink></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/addTutors'}>Add Tutor</NavLink></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/myTutor'}>My Tutors</NavLink></li>
-        <li className=" cursor-pointer hover:text-[#65A662]"><NavLink href={'/MyBooked'}>My Booked Sessions</NavLink></li>
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const meno = (
+    <>
+      <li className="cursor-pointer hover:text-[#65A662]">
+        <NavLink href={"/"}>Home</NavLink>
+      </li>
+      <li className="cursor-pointer hover:text-[#65A662]">
+        <NavLink href={"/tutor"}>Tutors</NavLink>
+      </li>
+      <li className="cursor-pointer hover:text-[#65A662]">
+        <NavLink href={"/addTutors"}>Add Tutor</NavLink>
+      </li>
+      <li className="cursor-pointer hover:text-[#65A662]">
+        <NavLink href={"/myTutor"}>My Tutors</NavLink>
+      </li>
+      <li className="cursor-pointer hover:text-[#65A662]">
+        <NavLink href={"/MyBooked"}>My Booked Sessions</NavLink>
+      </li>
     </>
+  );
+
   return (
-    <div className='  absolute top-5 left-[50%] right-[50%]  translate-x-[-50%] w-11/12  xl:w-7xl flex justify-between z-50 items-center'>
+    <div
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container w-11/12 max-w-7xl mx-auto flex justify-between items-center py-4">
         {/* start */}
-      <div>
-        <Link href={'/'}>
-        <button className='text-3xl font-medium text-white flex items-center gap-2 cursor-pointer'>
-       <GraduationCap style={{height: "30px", width: "30px"}} className='text-[#65A662]'/> MediQueue
-      </button>
-        </Link>
-      </div>
-      {/* middle */}
-      <div>
-        <ul className='lg:flex gap-3 text-white lg:text-[14px] xl:text-[16px] hidden'>
+        <div>
+          <Link href={"/"}>
+            <button className={`text-2xl font-medium flex items-center gap-2 cursor-pointer ${isScrolled ? "text-black" : "text-white"}`}>
+              <GraduationCap
+                style={{ height: "30px", width: "30px" }}
+                className="text-[#65A662]"
+              />
+              MediQueue
+            </button>
+          </Link>
+        </div>
+
+        {/* middle */}
+        <div>
+          <ul className={`lg:flex gap-3 lg:text-[14px] xl:text-[16px] hidden ${isScrolled ? "text-black" : "text-white"}`}>
             {meno}
-        </ul>
-      </div>
-      {/* end */}
-      <div className='flex items-center gap-2'>
-        <ThemeToggoling></ThemeToggoling>
-        <button  className="cursor-pointer bg-[#65A662] px-6 py-3 rounded-full text-white font-medium group ">
-            <div className="relative overflow-hidden h-6">
+          </ul>
+        </div>
 
-              <p className="transform transition-all duration-[1.125s] ease-out-expo group-hover:-translate-y-6">
-                GET START
-              </p>
+        {/* end */}
+        <div className="flex items-center gap-2">
+          <ThemeToggoling />
 
-              <p className="absolute top-6 left-0 w-full transform transition-all duration-[1.125s] ease-out-expo group-hover:top-0">
-                LOGIN
-              </p>
+          <Link href={"/login"}>
+            <button className="offer-btn cssbuttons-io-button">
+              LOGIN
+              <div className="icon">
+                <svg
+                  height="24"
+                  width="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+          </Link>
 
-            </div>
-          </button>
-           <Dropdown>
-      <Button aria-label="Menu" variant="secondary">
-        Actions
-      </Button>
-      <Dropdown.Popover>
-        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-          <Dropdown.Item id="new-file" textValue="New file">
-            <Label>New file</Label>
-          </Dropdown.Item>
-          
-        </Dropdown.Menu>
-      </Dropdown.Popover>
-    </Dropdown>
+          <Dropdown>
+            <Button aria-label="Menu" variant="secondary">
+              Actions
+            </Button>
+
+            <Dropdown.Popover>
+              <Dropdown.Menu>
+                <Dropdown.Item id="new-file" textValue="New file">
+                  <Label>New file</Label>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown.Popover>
+          </Dropdown>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Nevber
-
-
+export default Nevber;

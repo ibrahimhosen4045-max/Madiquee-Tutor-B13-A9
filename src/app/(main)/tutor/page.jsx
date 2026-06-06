@@ -5,9 +5,11 @@ import React from 'react'
 
 const fetchData = async () => {
     const res = await fetch(`${process.env.PUBLIC_API_URL}/tutors`)
-    const data = res.json()
+    const data = await res.json()
     return data || []
 }
+
+
 
 const Tutors = async () => {
   const tutors = await fetchData()

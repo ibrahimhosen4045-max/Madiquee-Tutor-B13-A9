@@ -56,7 +56,7 @@ const DetailsBn = ({data}) => {
             <p ref={desCripRef} className='flex items-center gap-3 text-white py-3'>
                 <Link href={'/'} className='hover:text-[#65A662]'>Home</Link>
                 <ChevronRight/>
-                <p>Tutor</p>
+                <p>Details</p>
             </p>
         </div>
       </div>
