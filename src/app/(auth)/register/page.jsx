@@ -1,27 +1,43 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+
 const RegisterForm = () => {
-  const [showPass, setShowPass] = useState(false);
-  const router = useRouter();
+  const [showPass, setShowPass] = useState(false)
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleLogin = async (data) => {
-    console.log(data);
-    // const { email, name, photo, password } = data;
-    // const { data: res, error } = await authClient.signUp.email({ ... });
-  };
+  const {register, handleSubmit, formState:{errors}} = useForm()
+    
+    const handleLogin = async (datas) => {
+    console.log(datas)
+    const {data, error} = await authClient.signUp.email({
+      email: datas.email,
+      password: datas.password,
+      image: datas.photo,
+      name: datas.name,
+      callbackURL: "/"
+    })
 
-  const googleLogin = async (e) => {
-    e.preventDefault(); // ফর্ম সাবমিট হওয়া আটকানোর জন্য
-    // const data = await authClient.signIn.social({ provider: "google" });
-  };
+    if(data){
+      redirect('/')
+    }
+
+    if(error){
+      toast.error(error.message)
+    }
+    
+    }
+
+    const googleLogin = () => {
+      
+    }
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gray-100 p-5 font-sans">

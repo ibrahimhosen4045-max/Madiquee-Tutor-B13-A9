@@ -1,16 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { GraduationCap } from "@gravity-ui/icons";
 import Link from "next/link";
 import ThemeToggoling from "./sheared/ThemeToggoling";
 import NavLink from "./sheared/NavLink";
-import { Button, Dropdown, Label } from "@heroui/react";
+import { Avatar, Button, Dropdown, Label } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
+import Profile from "./Profile";
+
 
 const Nevber = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const {data: session} = authClient.useSession()
+    const user = session?.user
+    console.log(user)
+
   useEffect(() => {
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -50,7 +59,7 @@ const Nevber = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container w-11/12 max-w-7xl mx-auto flex justify-between items-center py-4">
+      <div className="container w-11/12 max-w-7xl mx-auto flex justify-between items-center py-3">
         {/* start */}
         <div>
           <Link href={"/"}>
@@ -75,7 +84,11 @@ const Nevber = () => {
         <div className="flex items-center gap-2">
           <ThemeToggoling />
 
-          <Link href={"/login"}>
+          {user ? 
+          <div className="flex items-center gap-1">
+            <Profile user = {user}></Profile>
+          </div> :
+        <Link href={"/login"}>
             <button className="offer-btn cssbuttons-io-button">
               LOGIN
               <div className="icon">
@@ -94,20 +107,11 @@ const Nevber = () => {
               </div>
             </button>
           </Link>
+      }
 
-          <Dropdown>
-            <Button aria-label="Menu" variant="secondary">
-              Actions
-            </Button>
+          
 
-            <Dropdown.Popover>
-              <Dropdown.Menu>
-                <Dropdown.Item id="new-file" textValue="New file">
-                  <Label>New file</Label>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown.Popover>
-          </Dropdown>
+          
         </div>
       </div>
     </div>

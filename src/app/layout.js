@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Toaster } from "react-hot-toast";
 
 
 const montserrat = Montserrat({
@@ -23,7 +24,8 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          {children}  
+          {children} 
+          <Toaster /> 
         </Providers>
       </body>
     </html>

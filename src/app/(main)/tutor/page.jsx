@@ -4,7 +4,7 @@ import TutorBan from '@/component/tutorPage/TutorBan'
 import React from 'react'
 
 const fetchData = async () => {
-    const res = await fetch(`${process.env.PUBLIC_API_URL}/tutors`)
+    const res = await fetch(`${"http://localhost:5500/tutors"}`)
     const data = await res.json()
     return data || []
 }
