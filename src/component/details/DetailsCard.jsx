@@ -9,8 +9,10 @@ import {
   Wallet,
   Users,
 } from "lucide-react";
-import { Button } from "@heroui/react";
+
 import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter } from "react-icons/ci";
+
+import { BookingModal } from "./BookingModal";
 
 
 const DetailsCard = ({details}) => {
@@ -176,8 +178,7 @@ const DetailsCard = ({details}) => {
             </div>
 
             {/* BUTTON */}
-            
-            <Button className={'bg-[#65A662]'}>Booked</Button>
+            <BookingModal details = {details}></BookingModal>
           </div>
         </div>
 

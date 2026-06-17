@@ -19,6 +19,7 @@ import image1 from "@/assets/page-22.jpg";
 import image2 from "@/assets/page-1.jpg";
 import image3 from "@/assets/page-11.jpg";
 import { ArrowRight } from "@gravity-ui/icons";
+import Link from "next/link";
 
 
 const Banner = () => {
@@ -101,6 +102,7 @@ const Banner = () => {
             Education can be thought og as the transmission of the value and accumulated knowledge of a society. in this sense, it is equivalent.
           </p>
 
+          <Link href={'/tutor'}>
           <button ref={buttonRef} className="offer-btn cssbuttons-io-button mt-10">
               All Tutors
               <div className="icon">
@@ -119,6 +121,7 @@ const Banner = () => {
               </svg>
             </div>
             </button>
+          </Link>
 
           <div ref={expariensRef} className="flex gap-5 flex-wrap relative top-10 md:top-15">
             <div className="flex gap-2 items-center md:border-r pr-5">

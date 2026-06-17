@@ -14,7 +14,7 @@ const AllTutorsCard =  ({details}) => {
     <div className='border border-gray-100 dark:border-gray-400 shadow-sm rounded-md overflow-hidden cursor-pointer group '>
 
       {/* IMAGE */}
-      <div className='relative w-full h-52 overflow-hidden '>
+      <div className='relative w-full h-62 overflow-hidden '>
         <Image
           src={details.photo || "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="}
           alt={details.name}

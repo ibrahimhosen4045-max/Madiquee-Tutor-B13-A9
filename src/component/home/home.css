@@ -18,6 +18,7 @@
   height: 2.8em;
   padding-right: 3.3em;
   cursor: pointer;
+  
 }
 
 .cssbuttons-io-button .icon {
@@ -162,5 +163,6 @@
 .cssbuttons-io-button2:active .icon {
   transform: scale(0.95);
 }
+
 
 

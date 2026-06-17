@@ -33,8 +33,10 @@ const LoginForm = () => {
    
   }
 
-  const googleLogin = () => {
-
+  const googleLogin =async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   }
 
   return (

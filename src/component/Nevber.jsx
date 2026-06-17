@@ -9,14 +9,14 @@ import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Profile from "./Profile";
+import { PuffLoader } from "react-spinners";
 
 
 const Nevber = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const {data: session} = authClient.useSession()
+  const {data: session, isPending} = authClient.useSession()
     const user = session?.user
-    console.log(user)
 
   useEffect(() => {
 
@@ -83,12 +83,12 @@ const Nevber = () => {
         {/* end */}
         <div className="flex items-center gap-2">
           <ThemeToggoling />
-
-          {user ? 
-          <div className="flex items-center gap-1">
+          
+          {isPending? <PuffLoader color="#ffff" speedMultiplier={1.5} size={50}/> : user ? 
+          (<div className="flex items-center gap-1">
             <Profile user = {user}></Profile>
-          </div> :
-        <Link href={"/login"}>
+          </div>) :
+          (<Link href={"/login"}>
             <button className="offer-btn cssbuttons-io-button">
               LOGIN
               <div className="icon">
@@ -106,8 +106,8 @@ const Nevber = () => {
                 </svg>
               </div>
             </button>
-          </Link>
-      }
+          </Link>)
+          }
 
           
 
