@@ -8,12 +8,12 @@ const MyBookingSession = async () => {
     headers: await headers() // you need to pass the headers object.
 })
 const user = session?.user
-console.log(user)
+
 
   const res = await fetch(`http://localhost:5500/booking/${user?.id}`)
 
   const booking = await res.json()
-  console.log(booking)
+  
   return (
   <div className='container w-11/12 max-w-7xl mx-auto py-10'>
     <h2 className="text-2xl font-bold mb-6 ">My Booked Sessions</h2>

@@ -17,26 +17,7 @@ import { BookingModal } from "./BookingModal";
 
 const DetailsCard = ({details}) => {
   return (
-    // <div className=' container w-11/12 xl:w-7xl mx-auto py-20  '>
-    //   <div className='flex w-full h-full border rounded-xl'>
-    //     <div className='flex flex-col items-center gap-5 flex-1'>
-    //         <div className='rounded-full w-100 h-100 overflow-hidden shadow-2xl'>
-    //             <Image src={data.photo} alt={data.name} width={500} height={600} className='w-full h-full object-cover'/>
-    //         </div>
-    //         <div className='text-2xl  flex gap-2'>
-    //             <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiFacebook className='text-gray-500 dark:text-gray-400 '/></div>
-    //             <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiTwitter className='text-gray-500 dark:text-gray-400 '/></div>
-    //             <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiLinkedin className='text-gray-500 dark:text-gray-400 '/></div>
-    //             <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiInstagram className='text-gray-500 dark:text-gray-400 '/></div>
-    //         </div>
-    //     </div>
-    //   <div className='flex-1'>
-    //     <h1 className='font-semibold text-[#41833d]'>Instractor</h1>
-    //     <h1 className='font-semibold text-3xl'>{data.name}</h1>
-    //     <p></p>
-    //   </div>
-    //   </div>
-    // </div>
+
     <div className="bg-gray-50 min-h-screen py-10">
       <div className="container w-11/12 max-w-7xl mx-auto">
 

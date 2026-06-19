@@ -4,118 +4,186 @@ import { useState } from "react";
 import { Button } from "@heroui/react";
 import toast from "react-hot-toast";
 import Image from "next/image";
-import { VscDebugStart } from "react-icons/vsc";
-import { FaRegUser } from "react-icons/fa";
-import { MdOutlineMail } from "react-icons/md";
+
+import {
+  FiUser,
+  FiMail,
+  FiCalendar,
+  FiClock,
+  FiMapPin,
+  FiEdit,
+} from "react-icons/fi";
+
+import { MdAttachMoney } from "react-icons/md";
 import DeletSessionCard from "./DeletSessionCard";
 
-// যেহেতু এটি টেবিলের ভেতরে বসবে, তাই এটি একটি <tr> (Table Row) রিটার্ন করবে
 export default function BookSessionCard({ info }) {
   const [status, setStatus] = useState(info.status || "booked");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCancelling, setIsCancelling] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // ক্যানসেল কনফার্ম করার পর PATCH রিকোয়েস্ট পাঠানো
-  const handleConfirmCancel = async () => {
-    setIsCancelling(true);
+  const cancelSession = async () => {
+    setLoading(true);
+
     try {
-      const res = await fetch(`http://localhost:5500/booking/cancel/${info._id}`, {
-        method: "PATCH",
-      });
+      const res = await fetch(
+        `http://localhost:5500/booking/cancel/${info._id}`,
+        {
+          method: "PATCH",
+        },
+      );
+
       const data = await res.json();
 
       if (data.modifiedCount > 0) {
         setStatus("cancelled");
-        toast.success("Session cancelled successfully!");
+        toast.success("Session cancelled");
       } else {
-        toast.error("Something went wrong or already cancelled.");
+        toast.error("Cancel failed");
       }
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to cancel the session.");
+      toast.error("Something went wrong");
     } finally {
-      setIsCancelling(false);
-      setIsModalOpen(false); // মডাল বন্ধ করা
+      setLoading(false);
+      setOpenModal(false);
     }
   };
 
   return (
     <>
-    <div className="p-5 border border-gray-100 dark:border-gray-700 shadow-md  flex flex-col md:flex-row gap-5 rounded-lg">
-      <div className="md:w-70 md:h-50 overflow-hidden rounded-lg">
-        <Image src={info.tutorImage} alt={info.tutor} width={250} height={250} className="w-full h-full object-cover object-center"/>
-      </div>
-      <div className="flex flex-col justify-between gap-2 items-start w-full">
-        <button
-            className={`px-3 py-1 rounded-full text-xs font-semibold ${
+      <div  className=" bg-white  dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-md hover:shadow-xl transition ">
+        {/* Top Part */}
+
+        <div className="flex justify-between">
+          <div className="flex gap-4">
+            <Image
+              src={info.tutorImage}
+              width={90}
+              height={90}
+              alt="tutor"
+              className=" w-20 h-20 rounded-xl object-cover "
+            />
+
+            <div>
+              <h2  className=" text-xl font-bold ">
+                {info.tutor}
+              </h2>
+
+              <span
+                className={` inline-block mt-2 px-3 py-1 rounded-full text-xs
+            ${
               status === "cancelled"
                 ? "bg-red-100 text-red-600"
                 : "bg-green-100 text-green-600"
-            }`}
-          >
-            {status}
-        </button>
-        <h1 className="text-xl font-semibold">{info.tutor}</h1>
-        <h2 className="flex items-center gap-1 text-sm"><VscDebugStart className="text-[#65A662] text-[16px]" /> Session Start Date : {info.startDate}</h2>
-
-        <h2 className="flex items-center gap-1 text-sm"><FaRegUser className="text-[#65A662] " /> Booking User Name : {info.userName}</h2>
-        <h2 className="flex items-center gap-1 text-sm"><MdOutlineMail className="text-[#65A662] " />  {info.userEmail}</h2>
-        <div className="flex  items-center justify-between w-full">
-          <h1 className="text-xl font-semibold text-[#65A662]">${info.fee}</h1>
-          <div className="flex gap-3 items-center">
-            {
-              status === "cancelled" ? <><Button
-            size="sm"
-            color="danger"
-            className="rounded-md bg-red-500/10 text-red-500 font-semibold "
-            onClick={() => setIsModalOpen(true)}
-            disabled={status === "cancelled"}
-          >
-            {status === "cancelled" ? "Cancelled" : "Cancel"}
-          </Button>
-          <DeletSessionCard bookingId={info._id}></DeletSessionCard></> :
-          <Button
-            size="sm"
-            color="danger"
-            className="rounded-md bg-red-500/10 text-red-500 font-semibold "
-            onClick={() => setIsModalOpen(true)}
-            disabled={status === "cancelled"}
-          >
-            {status === "cancelled" ? "Cancelled" : "Cancel"}
-          </Button>
             }
+            `}
+              >
+                {status}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Details */}
+
+        <div
+          className=" grid md:grid-cols-2 gap-5 mt-6 "
+        >
+          <Info icon={<FiUser />} title="Student Name" value={info.userName} />
+
+          <Info icon={<FiMail />} title="Email" value={info.userEmail} />
+
+          <Info
+            icon={<FiCalendar />}
+            title="Start Date"
+            value={info.startDate}
+          />
+
+          <Info icon={<FiClock />} title="Time" value={info.time} />
+
+          <Info
+            icon={<FiMapPin />}
+            title="Location"
+            value={info.location || "Online"}
+          />
+        </div>
+
+        {/* Bottom */}
+
+        <div  className=" flex justify-between items-center mt-6 pt-4 border-t ">
+          <h2  className=" text-2xl font-bold text-green-600 flex items-center ">
+            <MdAttachMoney />
+            {info.fee}
+          </h2>
+
+          <div className="flex gap-3">
+            {status === "cancelled" ? (
+              <Button disabled className="bg-red-100 text-red-500">
+                Cancelled
+              </Button>
+            ) : (
+              <Button
+                onClick={() => setOpenModal(true)}
+                className="
+          bg-red-500
+          text-white
+          "
+              >
+                Cancel
+              </Button>
+            )}
+
+            {status === "cancelled" && (
+              <DeletSessionCard bookingId={info._id} />
+            )}
           </div>
         </div>
       </div>
-    </div>
 
-      {/* কাস্টম ক্যানসেল কনফার্মেশন মডাল */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="bg-white p-6 rounded-xl max-w-sm w-full shadow-xl border border-gray-100 animate-appearance-in">
-            <h3 className="text-lg font-bold text-black mb-2">Cancel Booking</h3>
-            <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-              Are you sure you want to cancel this tutor session with <span className="font-semibold text-black">{info.tutor}</span>? This action cannot be undone.
+      {/* Confirm Modal */}
+
+      {openModal && (
+        <div  className=" fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+          <div className=" bg-white rounded-xl p-6 w-[350px] ">
+            <h2 className="text-xl font-bold">Cancel Session?</h2>
+
+            <p className="text-gray-500 mt-3">
+              Are you sure you want to cancel this session?
             </p>
-            <div className="flex justify-end gap-3">
+
+            <div className="flex justify-end gap-3 mt-5">
               <button
-                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
-                onClick={() => setIsModalOpen(false)}
-                disabled={isCancelling}
+                onClick={() => setOpenModal(false)}
+                className=" px-4 py-2 bg-gray-100 rounded-lg"
               >
-                No, Keep it
+                No
               </button>
+
               <button
-                className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition-colors disabled:bg-red-300"
-                onClick={handleConfirmCancel}
-                disabled={isCancelling}
+                onClick={cancelSession}
+                disabled={loading}
+                className=" px-4 py-2 bg-red-500 text-white rounded-lg"
               >
-                {isCancelling ? "Cancelling..." : "Yes, Cancel"}
+                {loading ? "Canceling..." : "Yes Cancel"}
               </button>
             </div>
           </div>
         </div>
       )}
     </>
+  );
+}
+
+function Info({ icon, title, value }) {
+  return (
+    <div className="flex gap-3 items-center">
+      <div className="text-green-600 text-xl">{icon}</div>
+
+      <div>
+        <p className="text-xs text-gray-400">{title}</p>
+
+        <p className="font-semibold">{value || "N/A"}</p>
+      </div>
+    </div>
   );
 }

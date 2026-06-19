@@ -5,8 +5,12 @@ import { useForm } from "react-hook-form";
 import { CalendarDays, Clock3, MapPin, BookOpen } from "lucide-react";
 import BannerAddTutors from "@/component/addTutor/BannerAddTutors";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const AddTutor = () => {
+
+  const {data: session, isPending} = authClient.useSession()
+      const user = session?.user
  
   const {
     register,
@@ -15,12 +19,19 @@ const AddTutor = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+
+    const tutorData = {
+      ...data,
+      userId: user?.id,
+      userEmail: user?.email
+    }
+
     const res = await fetch('http://localhost:5500/tutors', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(tutorData)
     })
     const datas = await res.json()
     if(res.ok){
@@ -29,6 +40,8 @@ const AddTutor = () => {
       toast.error("Failed to add tutor!");
     }
   };
+
+  
   return (
     <div>
       <BannerAddTutors></BannerAddTutors>
