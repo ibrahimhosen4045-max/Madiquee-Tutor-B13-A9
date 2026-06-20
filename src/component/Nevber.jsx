@@ -10,6 +10,7 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Profile from "./Profile";
 import { PuffLoader } from "react-spinners";
+import './home/home.css'
 
 
 const Nevber = () => {

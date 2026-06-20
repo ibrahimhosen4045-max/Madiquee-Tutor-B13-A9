@@ -17,8 +17,8 @@ import {
 import { MdAttachMoney } from "react-icons/md";
 import DeletSessionCard from "./DeletSessionCard";
 
-export default function BookSessionCard({ info }) {
-  const [status, setStatus] = useState(info.status || "booked");
+export default function BookSessionCard({ info, onDelete }) {
+  const [status, setStatus] = useState(info.status);
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -134,7 +134,7 @@ export default function BookSessionCard({ info }) {
             )}
 
             {status === "cancelled" && (
-              <DeletSessionCard bookingId={info._id} />
+              <DeletSessionCard bookingId={info._id} onDelete={onDelete}/>
             )}
           </div>
         </div>

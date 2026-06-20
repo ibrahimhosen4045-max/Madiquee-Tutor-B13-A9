@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import React from 'react'
 import BookSessionCard from './BookSessionCard'
+import BookingList from './BookingList'
 
 const MyBookingSession = async () => {
   const session = await auth.api.getSession({
@@ -10,7 +11,9 @@ const MyBookingSession = async () => {
 const user = session?.user
 
 
-  const res = await fetch(`http://localhost:5500/booking/${user?.id}`)
+  const res = await fetch(`http://localhost:5500/booking/${user?.id}`, {
+    cache: "no-store"
+  })
 
   const booking = await res.json()
   
@@ -26,11 +29,7 @@ const user = session?.user
 
     ) : (
             
-          <div className='flex flex-col gap-6 py-10'>
-            {booking.map((info) => (
-              <BookSessionCard key={info._id} info={info} />
-            ))}
-          </div>
+          <BookingList bookings ={booking}></BookingList>
     
     )}
   </div>

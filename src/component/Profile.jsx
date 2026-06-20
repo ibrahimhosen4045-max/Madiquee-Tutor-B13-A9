@@ -5,6 +5,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import ProfileUp from './ProfileUp'
 import {Xmark} from '@gravity-ui/icons';
+import './home/home.css'
 
 
 const Profile = ({user}) => {

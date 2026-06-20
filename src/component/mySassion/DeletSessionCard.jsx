@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
-// bookingId এর পাশাপাশি tutorName এবং onDeleteSuccess প্রোপস হিসেবে নেওয়া হলো
-const DeletSessionCard = ({ bookingId, tutorName, onDeleteSuccess }) => {
+const DeletSessionCard = ({ bookingId, tutorName, onDelete}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
@@ -23,12 +22,12 @@ const DeletSessionCard = ({ bookingId, tutorName, onDeleteSuccess }) => {
       if (data) {
         toast.success("Session deleted successfully!");
         setIsModalOpen(false);
+        onDelete(bookingId)
 
       } else {
         toast.error("Could not delete the session.");
       }
    
-    window.location.reload();
   };
 
   return (
@@ -46,7 +45,7 @@ const DeletSessionCard = ({ bookingId, tutorName, onDeleteSuccess }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
           <div className="bg-white p-6 rounded-xl max-w-sm w-full shadow-xl border border-gray-100">
             <h3 className="text-lg font-bold text-black mb-2">Delete Booking</h3>
-            {/* এখানে info.tutor এর বদলে tutorName ব্যবহার করা হয়েছে */}
+
             <p className="text-gray-500 text-sm mb-6 leading-relaxed">
               Are you sure you want to Delete this tutor session with <span className="font-semibold text-black">{tutorName}</span>? This action cannot be undone.
             </p>

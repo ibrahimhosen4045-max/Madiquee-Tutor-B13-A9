@@ -1,8 +1,10 @@
 import React from "react";
 import { FiEdit, FiTrash2, FiClock, FiMapPin, FiCalendar } from "react-icons/fi";
 import { MdOutlineSchool, MdOutlineAttachMoney } from "react-icons/md";
+import DeletMyTutorCard from "./DeletMyTutorCard";
+import UpdateTutorModal from "./UpdateTutorModal";
 
-const MyTutorCard = ({ info }) => {
+const MyTutorCard = ({ info, onDelete, onUpdate }) => {
   return (
     <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 p-5 hover:shadow-xl transition duration-300">
 
@@ -35,18 +37,9 @@ const MyTutorCard = ({ info }) => {
         {/* Action Button */}
         <div className="flex gap-2">
 
-          <button
-            className="p-2 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition"
-          >
-            <FiEdit size={18}/>
-          </button>
+          <UpdateTutorModal info={info} onUpdate={onUpdate}></UpdateTutorModal>
 
-
-          <button
-            className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition"
-          >
-            <FiTrash2 size={18}/>
-          </button>
+          <DeletMyTutorCard info={info} onDelete={onDelete}></DeletMyTutorCard>
 
         </div>
 
