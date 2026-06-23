@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import {
   CalendarDays,
   Clock3,
@@ -11,36 +13,35 @@ import {
 } from "lucide-react";
 
 import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter } from "react-icons/ci";
-
 import { BookingModal } from "./BookingModal";
 
+const DetailsCard = ({ details }) => {
+  const [slot, setSlot] = useState(Number(details.slot));
 
-const DetailsCard = ({details}) => {
   return (
-
     <div className="bg-gray-50 min-h-screen py-10">
       <div className="container w-11/12 max-w-7xl mx-auto">
 
-        {/* TOP SECTION */}
         <div className="bg-white rounded-xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-10 p-6 lg:p-10">
 
           {/* IMAGE */}
-         <div className="flex flex-col items-center gap-5">
-           <div className="relative  h-80 md:h-100 w-80 md:w-100 rounded-full overflow-hidden">
-            <Image
-              src={details.photo}
-              alt={details.name}
-              fill
-              className="object-cover object-center"
-            />
+          <div className="flex flex-col items-center gap-5">
+            <div className="relative h-80 md:h-100 w-80 md:w-100 rounded-full overflow-hidden">
+              <Image
+                src={details.photo}
+                alt={details.name}
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+
+            <div className="text-2xl flex gap-2">
+              <CiFacebook />
+              <CiTwitter />
+              <CiLinkedin />
+              <CiInstagram />
+            </div>
           </div>
-          <div className='text-2xl  flex gap-2'>
-                 <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiFacebook className='text-gray-500 dark:text-gray-400 '/></div>
-                <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiTwitter className='text-gray-500 dark:text-gray-400 '/></div>
-                 <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiLinkedin className='text-gray-500 dark:text-gray-400 '/></div>
-                 <div className='p-1 rounded-full border-2 border-gray-500 dark:border-gray-400 hover:border-[#65A662] dark:hover:border-[#65A662] cursor-pointer'><CiInstagram className='text-gray-500 dark:text-gray-400 '/></div>
-             </div>
-         </div>
 
           {/* INFO */}
           <div className="space-y-6 flex flex-col justify-center">
@@ -61,11 +62,11 @@ const DetailsCard = ({details}) => {
 
             {/* BADGES */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+              <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm">
                 {details.mode}
               </span>
 
-              <span className="px-4 py-2 bg-green-100 text-green-600 rounded-full text-sm font-medium">
+              <span className="px-4 py-2 bg-green-100 text-green-600 rounded-full text-sm">
                 Available
               </span>
             </div>
@@ -74,101 +75,78 @@ const DetailsCard = ({details}) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
               <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100">
-                <Wallet className="text-blue-600" size={22} />
-
+                <Wallet size={22} />
                 <div>
-                  <p className="text-sm text-gray-500">
-                    Hourly Fee
-                  </p>
-
-                  <h3 className="font-semibold text-lg">
-                    ৳ {details.fee}
-                  </h3>
+                  <p className="text-sm text-gray-500">Hourly Fee</p>
+                  <h3 className="font-semibold text-lg">৳ {details.fee}</h3>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100">
-                <Users className="text-blue-600" size={22} />
-
+                <Users size={22} />
                 <div>
-                  <p className="text-sm text-gray-500">
-                    Total Slots
-                  </p>
+                  <p className="text-sm text-gray-500">Total Slots</p>
 
-                  <h3 className="font-semibold text-lg">
-                    {details.slot}
-                  </h3>
+                  {slot === 0 ? (
+                    <h3 className="font-semibold text-lg text-red-500">
+                      No available slots left
+                    </h3>
+                  ) : (
+                    <h3 className="font-semibold text-lg">
+                      {slot} available
+                    </h3>
+                  )}
                 </div>
               </div>
 
               <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100">
-                <Clock3 className="text-blue-600" size={22} />
-
+                <Clock3 size={22} />
                 <div>
-                  <p className="text-sm text-gray-500">
-                    Time Slot
-                  </p>
-
-                  <h3 className="font-semibold text-lg">
-                    {details.time}
-                  </h3>
+                  <p className="text-sm text-gray-500">Time Slot</p>
+                  <h3 className="font-semibold text-lg">{details.time}</h3>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100">
-                <CalendarDays className="text-blue-600" size={22} />
-
+                <CalendarDays size={22} />
                 <div>
-                  <p className="text-sm text-gray-500">
-                    Start Date
-                  </p>
-
-                  <h3 className="font-semibold text-lg">
-                    {details.date}
-                  </h3>
+                  <p className="text-sm text-gray-500">Start Date</p>
+                  <h3 className="font-semibold text-lg">{details.date}</h3>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100 ">
-                <MapPin className="text-blue-600" size={22} />
-
+              <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100">
+                <MapPin size={22} />
                 <div>
-                  <p className="text-sm text-gray-500">
-                    Location
-                  </p>
-
-                  <h3 className="font-semibold text-lg">
-                    {details.location}
-                  </h3>
+                  <p className="text-sm text-gray-500">Location</p>
+                  <h3 className="font-semibold text-lg">{details.location}</h3>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100 ">
-                <Monitor className="text-blue-600" size={22} />
-
+              <div className="flex items-center gap-3 p-4 rounded-2xl bg-gray-100">
+                <Monitor size={22} />
                 <div>
-                  <p className="text-sm text-gray-500">
-                    Teaching Mode
-                  </p>
-
-                  <h3 className="font-semibold text-lg">
-                    {details.mode}
-                  </h3>
+                  <p className="text-sm text-gray-500">Teaching Mode</p>
+                  <h3 className="font-semibold text-lg">{details.mode}</h3>
                 </div>
               </div>
+
             </div>
 
-            {/* BUTTON */}
-            <BookingModal details = {details}></BookingModal>
+            {/* BOOKING MODAL */}
+            <BookingModal
+              details={details}
+              slot={slot}
+              setSlot={setSlot}
+            />
+
           </div>
         </div>
 
         {/* EXPERIENCE */}
         <div className="bg-white mt-10 rounded-xl shadow-sm p-6 lg:p-10">
-
           <div className="flex items-center gap-3 mb-6">
-            <BookOpen className="text-blue-600" />
-
+            <BookOpen />
             <h2 className="text-3xl font-bold text-gray-800">
               Institution & Experience
             </h2>
@@ -178,9 +156,10 @@ const DetailsCard = ({details}) => {
             {details.experience}
           </p>
         </div>
+
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailsCard
+export default DetailsCard;

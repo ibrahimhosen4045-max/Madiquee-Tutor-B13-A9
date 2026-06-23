@@ -22,6 +22,8 @@ const AddTutor = () => {
 
     const tutorData = {
       ...data,
+      slot: Number(data.slot),
+      fee: Number(data.fee),
       userId: user?.id,
       userEmail: user?.email
     }
@@ -322,7 +324,7 @@ const AddTutor = () => {
           <div className="md:col-span-2 pt-4">
             <button
               type="submit"
-              className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg transition duration-300 shadow-lg"
+              className="w-full py-4 rounded-2xl bg-[#65A662] hover:bg-[#3a7437] text-white font-semibold text-lg transition duration-300 shadow-lg"
             >
               Add Tutor
             </button>
