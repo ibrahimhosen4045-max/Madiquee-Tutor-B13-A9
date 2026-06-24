@@ -166,3 +166,91 @@
 
 
 
+.cssbuttons-io-button5 {
+  background: #65A662;
+  color: white;
+  font-family: inherit;
+  padding: 0.25em;
+  padding-left: 0.8em;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #65A662;
+  overflow: hidden;
+  position: relative;
+  height: 2.3em;
+  padding-right: 2.7em;
+  cursor: pointer;
+}
+
+
+/* md and above - original size */
+@media (min-width: 768px) {
+  .cssbuttons-io-button5 {
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 14px;
+    height: 2.8em;
+    padding-right: 3.3em;
+  }
+}
+
+
+.cssbuttons-io-button5 .icon {
+  background: white;
+  margin-left: 0.8em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8em;
+  width: 1.8em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #65A662;
+  right: 0.25em;
+  transition: all 0.3s;
+}
+
+
+/* md and above */
+@media (min-width: 768px) {
+  .cssbuttons-io-button5 .icon {
+    margin-left: 1em;
+    height: 2.2em;
+    width: 2.2em;
+    right: 0.3em;
+  }
+}
+
+
+.cssbuttons-io-button5:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+
+.cssbuttons-io-button5 .icon svg {
+  width: 0.9em;
+  transition: transform 0.3s;
+  color: #65A662;
+}
+
+
+@media (min-width: 768px) {
+  .cssbuttons-io-button5 .icon svg {
+    width: 1.1em;
+  }
+}
+
+
+.cssbuttons-io-button5:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+
+.cssbuttons-io-button5:active .icon {
+  transform: scale(0.95);
+}

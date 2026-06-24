@@ -1,10 +1,16 @@
-/* From Uiverse.io by andrew-demchenk0 */ 
 .switch {
   font-size: 17px;
   position: relative;
   display: inline-block;
-  width: 64px;
-  height: 34px;
+  width: 44px;
+  height: 24px;
+}
+
+@media (min-width: 768px) {
+  .switch {
+    width: 64px;
+    height: 34px;
+  }
 }
 
 .switch input {
@@ -28,8 +34,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   border-radius: 20px;
   left: 2px;
   bottom: 2px;
@@ -38,71 +44,73 @@
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+@media (min-width: 768px) {
+  .slider:before {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+
 .sun svg {
   position: absolute;
-  top: 6px;
-  left: 36px;
+  top: 4px;
+  left: 24px;
   z-index: 1;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
 }
+
 
 .moon svg {
   fill: #ffffff;
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 4px;
+  left: 4px;
   z-index: 1;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
 }
 
-/* .switch:hover */.sun svg {
-  animation: rotate 15s linear infinite;
+
+@media (min-width: 768px) {
+
+  .sun svg {
+    top: 6px;
+    left: 36px;
+    width: 24px;
+    height: 24px;
+  }
+
+
+  .moon svg {
+    top: 5px;
+    left: 5px;
+    width: 24px;
+    height: 24px;
+  }
+
 }
 
-@keyframes rotate {
- 
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* .switch:hover */.moon svg {
-  animation: tilt 5s linear infinite;
-}
-
-@keyframes tilt {
- 
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(-10deg);
-  }
-
-  75% {
-    transform: rotate(10deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
 
 .input:checked + .slider {
   background-color: #000000;
 }
 
+
 .input:focus + .slider {
   box-shadow: 0 0 1px #183153;
 }
 
+
 .input:checked + .slider:before {
-  transform: translateX(30px);
+  transform: translateX(20px);
+}
+
+
+@media (min-width: 768px) {
+  .input:checked + .slider:before {
+    transform: translateX(30px);
+  }
 }

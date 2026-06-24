@@ -1,26 +1,26 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GraduationCap } from "@gravity-ui/icons";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import ThemeToggoling from "./sheared/ThemeToggoling";
 import NavLink from "./sheared/NavLink";
-import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
-import Image from "next/image";
 import Profile from "./Profile";
 import { PuffLoader } from "react-spinners";
-import './home/home.css'
+import { useState as useMobileState } from "react";
 
+import "./home/home.css";
 
 const Nevber = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const {data: session, isPending} = authClient.useSession()
-    const user = session?.user
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
 
   useEffect(() => {
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -32,90 +32,120 @@ const Nevber = () => {
     };
   }, []);
 
-  const meno = (
+  const menu = (
     <>
-      <li className="cursor-pointer hover:text-[#65A662]">
-        <NavLink href={"/"}>Home</NavLink>
+      <li>
+        <NavLink href="/">Home</NavLink>
       </li>
-      <li className="cursor-pointer hover:text-[#65A662]">
-        <NavLink href={"/tutor"}>Tutors</NavLink>
+
+      <li>
+        <NavLink href="/tutor">Tutors</NavLink>
       </li>
-      <li className="cursor-pointer hover:text-[#65A662]">
-        <NavLink href={"/addTutors"}>Add Tutor</NavLink>
+
+      <li>
+        <NavLink href="/addTutors">Add Tutor</NavLink>
       </li>
-      <li className="cursor-pointer hover:text-[#65A662]">
-        <NavLink href={"/myTutor"}>My Tutors</NavLink>
+
+      <li>
+        <NavLink href="/myTutor">My Tutors</NavLink>
       </li>
-      <li className="cursor-pointer hover:text-[#65A662]">
-        <NavLink href={"/MyBooked"}>My Booked Sessions</NavLink>
+
+      <li>
+        <NavLink href="/MyBooked">My Booked Sessions</NavLink>
       </li>
     </>
   );
 
   return (
-    <div
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+    <nav
+      className={`
+      fixed top-0 left-0 w-full z-50 transition-all duration-300
+      ${
         isScrolled
           ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md"
           : "bg-transparent"
-      }`}
+      }
+      `}
     >
-      <div className="container w-11/12 max-w-7xl mx-auto flex justify-between items-center py-3">
-        {/* start */}
-        <div>
-          <Link href={"/"}>
-            <button className={`text-2xl font-medium flex items-center gap-2 cursor-pointer ${isScrolled ? "text-black" : "text-white"}`}>
-              <GraduationCap
-                style={{ height: "30px", width: "30px" }}
-                className="text-[#65A662]"
-              />
-              MediQueue
-            </button>
-          </Link>
-        </div>
+      <div
+        className=" container w-11/12 max-w-7xl mx-auto  flex justify-between items-center py-3 relative " >
+        {/* LOGO */}
 
-        {/* middle */}
-        <div>
-          <ul className={`lg:flex gap-3 lg:text-[14px] xl:text-[16px] hidden ${isScrolled ? "text-black" : "text-white"}`}>
-            {meno}
-          </ul>
-        </div>
+        <Link href="/">
+          <div
+            className={`text-xl md:text-2xl font-medium flex items-center gap-1 md:gap-2 cursor-pointer
+          ${isScrolled ? "text-black dark:text-white" : "text-white"}
+          `}
+          >
+            <GraduationCap
+              style={{
+                height: "30px",
+                width: "30px",
+              }}
+              className="text-[#65A662]"
+            />
+            MediQueue
+          </div>
+        </Link>
 
-        {/* end */}
-        <div className="flex items-center gap-2">
+        {/* DESKTOP MENU */}
+
+        <ul
+          className={` hidden lg:flex gap-5 text-[15px]
+        ${isScrolled ? "text-black dark:text-white" : "text-white"}
+        `}
+        >
+          {menu}
+        </ul>
+
+        {/* RIGHT SIDE */}
+
+        <div className="flex items-center gap-1 md:gap-3">
           <ThemeToggoling />
-          
-          {isPending? <PuffLoader color="#ffff" speedMultiplier={1.5} size={50}/> : user ? 
-          (<div className="flex items-center gap-1">
-            <Profile user = {user}></Profile>
-          </div>) :
-          (<Link href={"/login"}>
-            <button className="offer-btn cssbuttons-io-button">
-              LOGIN
-              <div className="icon">
-                <svg
-                  height="24"
-                  width="24"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-            </button>
-          </Link>)
-          }
 
-          
+          {isPending ? (
+            <PuffLoader color="#65A662" size={35} />
+          ) : user ? (
+            <Profile user={user} />
+          ) : (
+            <Link href="/login">
+              <button className="offer-btn cssbuttons-io-button5">
+                LOGIN
+                <div className="icon">
+                  <svg height="24" width="24" viewBox="0 0 24 24">
+                    <path
+                      d="M16.172 11l-5.364-5.364 
+              1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </Link>
+          )}
 
-          
+          {/* MOBILE BUTTON */}
+
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`lg:hidden text-2xl
+            ${isScrolled ? "text-black dark:text-white" : "text-white"}`}>
+            {mobileOpen ? <X /> : <Menu />}
+          </button>
         </div>
       </div>
-    </div>
+
+      {/* MOBILE MENU */}
+
+      {mobileOpen && (
+        <div className=" lg:hidden bg-white dark:bg-black shadow-md w-full md:w-100 absolute top-15 right-0 md:right-[5%] z-50 md:rounded-2xl">
+          <ul  className=" flex flex-col gap-4 p-5 text-black dark:text-white ">
+            {menu}
+          </ul>
+          
+        </div>
+      )}
+    </nav>
   );
 };
 

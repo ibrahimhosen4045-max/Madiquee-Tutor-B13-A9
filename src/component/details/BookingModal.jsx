@@ -33,23 +33,20 @@ export function BookingModal({ details, slot, setSlot }) {
       classMode: details.mode,
     };
 
-    
-    if(slot === 0){
-     toast.error("No available slots left.");
-     return;
+    if (slot === 0) {
+      toast.error("No available slots left.");
+      return;
     }
-     
+
     const today = new Date();
     const sessionDate = new Date(details.date);
 
-    today.setHours(0,0,0,0);
-    sessionDate.setHours(0,0,0,0);
-    
-    if(today < sessionDate){
-     toast.error(
-     "Booking is not available yet for this tutor"
-     );
-     return;
+    today.setHours(0, 0, 0, 0);
+    sessionDate.setHours(0, 0, 0, 0);
+
+    if (today < sessionDate) {
+      toast.error("Booking is not available yet for this tutor");
+      return;
     }
 
     const res = await fetch("http://localhost:5500/booking", {
@@ -64,7 +61,7 @@ export function BookingModal({ details, slot, setSlot }) {
 
     if (data.error) {
       toast.error(data.message);
-      
+
       return;
     }
 
@@ -78,20 +75,20 @@ export function BookingModal({ details, slot, setSlot }) {
     }
   };
 
-useEffect(() => {
-  if (!user?.id || !details?._id) return;
+  useEffect(() => {
+    if (!user?.id || !details?._id) return;
 
-  fetch(`http://localhost:5500/booking/${user.id}`)
-    .then((res) => res.json())
-    .then((bookings) => {
-      const hasActiveBooking = bookings.some(
-        (b) => b.tutorId === details._id && b.status === "booked"
-      );
+    fetch(`http://localhost:5500/booking/${user.id}`)
+      .then((res) => res.json())
+      .then((bookings) => {
+        const hasActiveBooking = bookings.some(
+          (b) => b.tutorId === details._id && b.status === "booked",
+        );
 
-      setIsAlreadyBooked(hasActiveBooking);
-    })
-    .catch(console.error);
-}, [user?.id, details?._id]);
+        setIsAlreadyBooked(hasActiveBooking);
+      })
+      .catch(console.error);
+  }, [user?.id, details?._id]);
 
   return (
     <Modal isOpen={open} onOpenChange={setOpen}>
@@ -103,20 +100,24 @@ useEffect(() => {
 
     ${
       isAlreadyBooked || slot === 0
-      ? "bg-gray-400 cursor-not-allowed text-gray-200"
-      : "bg-[#65A662] cursor-pointer hover:bg-[#548c51]"
+        ? "bg-gray-400 cursor-not-allowed text-gray-200"
+        : "bg-[#65A662] cursor-pointer hover:bg-[#548c51]"
     }
 
   `}
       >
-        { slot === 0 ? "Session Full" : isAlreadyBooked ? "Already Booked" : "Book Tutor"}
+        {slot === 0
+          ? "Session Full"
+          : isAlreadyBooked
+            ? "Already Booked"
+            : "Book Tutor"}
 
         <RiShoppingCartFill />
       </Button>
 
       <Modal.Backdrop>
         <Modal.Container>
-          <Modal.Dialog className="sm:max-w-[420px]">
+          <Modal.Dialog className="sm:max-w-[420px] bg-[#111] ">
             <Modal.CloseTrigger />
 
             <Modal.Header>
@@ -132,13 +133,17 @@ useEffect(() => {
             <Modal.Body>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="font-medium text-black">
+                  <label
+                    htmlFor="name"
+                    className="font-medium text-black dark:text-white"
+                  >
                     Your Name
                   </label>
 
                   <Input
                     name="name"
                     label="Student Name"
+                    className={"bg-[#222]"}
                     placeholder="Enter your name"
                     value={user?.name}
                     readOnly
@@ -147,7 +152,7 @@ useEffect(() => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="font-medium text-black">
+                  <label htmlFor="email" className="font-medium text-black dark:text-white">
                     Your Email
                   </label>
 
@@ -156,6 +161,7 @@ useEffect(() => {
                     label="Email"
                     placeholder="Enter email"
                     type="email"
+                    className={"bg-[#222]"}
                     value={user?.email}
                     readOnly
                     required
@@ -163,7 +169,7 @@ useEffect(() => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="number" className="font-medium text-black">
+                  <label htmlFor="number" className="font-medium text-black dark:text-white">
                     Your Number
                   </label>
 
@@ -172,6 +178,7 @@ useEffect(() => {
                     label="Phone Number"
                     placeholder="+880 "
                     type="number"
+                    className={"bg-[#222]"}
                     required
                   />
                 </div>
@@ -179,7 +186,7 @@ useEffect(() => {
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="tutor-name"
-                    className="font-medium text-black"
+                    className="font-medium text-black dark:text-white"
                   >
                     Tutor ID
                   </label>
@@ -189,6 +196,7 @@ useEffect(() => {
                     label="Tutor Name"
                     placeholder="Tutor name"
                     value={details._id}
+                    className={"bg-[#222]"}
                     readOnly
                     required
                   />
@@ -197,7 +205,7 @@ useEffect(() => {
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="tutor-name"
-                    className="font-medium text-black"
+                    className="font-medium text-black dark:text-white"
                   >
                     Tutor Name
                   </label>
@@ -207,11 +215,11 @@ useEffect(() => {
                     label="Tutor Name"
                     placeholder="Tutor name"
                     value={details.name}
+                    className={"bg-[#222]"}
                     readOnly
                     required
                   />
                 </div>
-
 
                 <Button
                   type="submit"

@@ -47,16 +47,16 @@ const AddTutor = () => {
   return (
     <div>
       <BannerAddTutors></BannerAddTutors>
-          <div className="min-h-screen bg-gray-50 py-20 px-4">
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12">
+          <div className="min-h-screen bg-gray-50 dark:bg-black/90 py-20 px-4">
+      <div className="max-w-5xl mx-auto bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 md:p-12">
         
         {/* Heading */}
         <div className="space-y-3 text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-800">
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-white">
             Add New Tutor
           </h1>
 
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             Fill all tutor information carefully
           </p>
         </div>
@@ -68,7 +68,7 @@ const AddTutor = () => {
         >
           {/* Tutor Name */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Tutor Name
             </label>
 
@@ -78,7 +78,7 @@ const AddTutor = () => {
               {...register("name", {
                 required: "Tutor name is required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className=" w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.name && (
@@ -90,7 +90,7 @@ const AddTutor = () => {
 
           {/* Photo URL */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Tutor Photo URL
             </label>
 
@@ -100,7 +100,7 @@ const AddTutor = () => {
               {...register("photo", {
                 required: "Photo URL is required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.photo && (
@@ -112,7 +112,7 @@ const AddTutor = () => {
 
           {/* Subject */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Subject / Category
             </label>
 
@@ -120,7 +120,7 @@ const AddTutor = () => {
               {...register("subject", {
                 required: "Select a subject",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             >
               <option value="">Select Subject</option>
               <option>Mathematics</option>
@@ -140,7 +140,7 @@ const AddTutor = () => {
 
           {/* Teaching Mode */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Teaching Mode
             </label>
 
@@ -148,7 +148,7 @@ const AddTutor = () => {
               {...register("mode", {
                 required: "Select teaching mode",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             >
               <option value="">Select Mode</option>
               <option>Online</option>
@@ -165,7 +165,7 @@ const AddTutor = () => {
 
           {/* Available Days */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700 flex items-center gap-2">
+            <label className="font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <Clock3 size={18} />
               Available Days
             </label>
@@ -176,7 +176,7 @@ const AddTutor = () => {
               {...register("days", {
                 required: "Available days required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.days && (
@@ -188,7 +188,7 @@ const AddTutor = () => {
 
           {/* Time Slot */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Available Time Slot
             </label>
 
@@ -198,7 +198,7 @@ const AddTutor = () => {
               {...register("time", {
                 required: "Time slot required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.time && (
@@ -210,7 +210,7 @@ const AddTutor = () => {
 
           {/* Hourly Fee */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Hourly Fee
             </label>
 
@@ -220,7 +220,7 @@ const AddTutor = () => {
               {...register("fee", {
                 required: "Hourly fee required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.fee && (
@@ -232,7 +232,7 @@ const AddTutor = () => {
 
           {/* Total Slot */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700">
+            <label className="font-medium text-gray-700 dark:text-gray-200">
               Total Slot
             </label>
 
@@ -242,7 +242,7 @@ const AddTutor = () => {
               {...register("slot", {
                 required: "Total slot required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.slot && (
@@ -254,7 +254,7 @@ const AddTutor = () => {
 
           {/* Session Start Date */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700 flex items-center gap-2">
+            <label className="font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <CalendarDays size={18} />
               Session Start Date
             </label>
@@ -264,7 +264,7 @@ const AddTutor = () => {
               {...register("date", {
                 required: "Start date required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.date && (
@@ -276,7 +276,7 @@ const AddTutor = () => {
 
           {/* Location */}
           <div className="space-y-2">
-            <label className="font-medium text-gray-700 flex items-center gap-2">
+            <label className="font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <MapPin size={18} />
               Location
             </label>
@@ -287,7 +287,7 @@ const AddTutor = () => {
               {...register("location", {
                 required: "Location required",
               })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  border border-gray-200  dark:border-gray-700  bg-white  dark:bg-gray-800  text-gray-800  dark:text-white placeholder:text-gray-400 rounded-xl  px-4  py-3  outline-none  focus:ring-2  focus:ring-[#65A662]"
             />
 
             {errors.location && (
@@ -299,7 +299,7 @@ const AddTutor = () => {
 
           {/* Institution */}
           <div className="md:col-span-2 space-y-2">
-            <label className="font-medium text-gray-700 flex items-center gap-2">
+            <label className="font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <BookOpen size={18} />
               Institution & Experience
             </label>
@@ -310,8 +310,7 @@ const AddTutor = () => {
               {...register("experience", {
                 required: "Experience required",
               })}
-              className="w-full border border-gray-200 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-            />
+              className=" w-full  border border-gray-200  dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#65A662] resize-none "/>
 
             {errors.experience && (
               <p className="text-red-500 text-sm">
