@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MediQueue – Tutor Booking System
 
-## Getting Started
+## Live Website
+🔗 Live Site URL: https://madiquee-tutor-b13-a9-wxi5.vercel.app/
 
-First, run the development server:
+## Client Repository
+🔗 GitHub Client: https://github.com/ibrahimhosen4045-max/Madiquee-Tutor-B13-A9.git
+
+## Server Repository
+🔗 GitHub Server: https://github.com/ibrahimhosen4045-max/A9_server.git
+
+
+## Project Overview
+
+MediQueue is a modern tutor booking web application designed to make the tutor-student scheduling process simple, organized, and efficient.
+
+Students can explore available tutors, search and filter tutors based on requirements, book learning sessions, and manage their scheduled classes. Tutors can create, update, and manage their tutor profiles through a secure dashboard.
+
+The system prevents scheduling conflicts, manages available slots automatically, and generates digital booking sessions for a smooth learning experience.
+
+
+## Features
+
+- 🔐 Secure authentication system with Email/Password login and Google authentication.
+- 👨‍🏫 Users can create, update, and delete their own tutor profiles.
+- 🔎 Advanced tutor searching with case-insensitive name search using MongoDB regex.
+- 📅 Tutor filtering system based on registration dates.
+- 📚 Students can view tutor details and book available learning sessions.
+- 🎟️ Automatic session booking management with slot availability control.
+- 📊 Personal dashboard for managing created tutors and booked sessions.
+- 🌙 Dark and Light theme toggle for better user experience.
+- 📱 Fully responsive design for mobile, tablet, and desktop devices.
+- 🔔 Toast notifications for all CRUD operations and user activities.
+- 🚫 Protected private routes with authentication verification.
+- ⚡ Dynamic page titles based on route changes.
+- 🛡️ JWT authentication implemented for secure private route access.
+
+
+## Technology Stack
+
+### Client Side
+- Next.js
+- React.js
+- JavaScript
+- Tailwind CSS
+- React Hook Form
+- Axios
+- React Hot Toast
+- Lucide React Icons
+
+### Server Side
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- CORS
+- Dotenv
+
+
+## Main Pages
+
+### Public Pages
+- Home Page
+- Tutors Page
+- Login Page
+- Register Page
+- 404 Not Found Page
+
+
+### Private Pages
+- Add Tutor
+- Tutor Details
+- My Tutors
+- My Booked Sessions
+- Profile Management
+
+
+## Authentication Features
+
+- User registration with password validation.
+- User login with email and password.
+- Google social authentication.
+- Protected private routes.
+- JWT token verification.
+- User-specific data management.
+
+
+## Tutor Management
+
+Users can:
+
+- Add tutor information.
+- Upload tutor image.
+- Select subject category.
+- Set available days and time slots.
+- Add hourly fees and total slots.
+- Add institution, experience, and location.
+- Update tutor information.
+- Delete tutor profiles.
+
+
+## Booking System
+
+Students can:
+
+- View detailed tutor information.
+- Book available sessions.
+- Get automatic slot validation.
+- Prevent booking before session start date.
+- Automatically decrease available slots after successful booking.
+- Cancel booked sessions.
+
+
+## Search and Filter
+
+The Tutors page includes:
+
+- Tutor name search functionality.
+- Case-insensitive searching.
+- Date range filtering using MongoDB operators:
+  - `$gte`
+  - `$lte`
+  - `$regex`
+
+
+## UI Features
+
+- Modern responsive layout.
+- Smooth animations.
+- Consistent typography and button design.
+- Mobile-friendly navigation.
+- Dark/Light theme support.
+- Loading spinner during data fetching.
+- Friendly empty-state messages.
+
+
+## Deployment
+
+The application is deployed using:
+
+- Client: Vercel
+- Server: Vercel / Render
+
+
+## Installation and Setup
+
+### Client Setup
 
 ```bash
+git clone client-repository-link
+
+cd client-folder
+
+npm install
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
