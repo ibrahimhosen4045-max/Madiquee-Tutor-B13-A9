@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 import React from 'react'
 import BookSessionCard from './BookSessionCard'
 import BookingList from './BookingList'
+import { authClient } from '@/lib/auth-client'
 
 const MyBookingSession = async () => {
   const session = await auth.api.getSession({
@@ -10,9 +11,15 @@ const MyBookingSession = async () => {
 })
 const user = session?.user
 
-
+  const tokenData = await auth.api.getToken({
+      headers: await headers()
+    })
+    const token = tokenData?.token
   const res = await fetch(`http://localhost:5500/booking/${user?.id}`, {
-    cache: "no-store"
+    cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`
+    }
   })
 
   const booking = await res.json()

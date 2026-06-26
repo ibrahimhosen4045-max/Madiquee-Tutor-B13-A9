@@ -49,10 +49,13 @@ export function BookingModal({ details, slot, setSlot }) {
       return;
     }
 
+    const {data:tokenData} = await authClient.token()
+
     const res = await fetch("http://localhost:5500/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}` 
       },
       body: JSON.stringify(bookingData),
     });
@@ -117,7 +120,7 @@ export function BookingModal({ details, slot, setSlot }) {
 
       <Modal.Backdrop>
         <Modal.Container>
-          <Modal.Dialog className="sm:max-w-[420px] bg-[#111] ">
+          <Modal.Dialog className="sm:max-w-[420px] bg-white dark:bg-[#111] ">
             <Modal.CloseTrigger />
 
             <Modal.Header>
@@ -125,7 +128,7 @@ export function BookingModal({ details, slot, setSlot }) {
                 <LuBookCheck className="text-2xl" />
               </Modal.Icon>
 
-              <Modal.Heading className="text-xl font-semibold">
+              <Modal.Heading className="text-xl font-semibold ">
                 Book Tutor Session
               </Modal.Heading>
             </Modal.Header>
@@ -143,7 +146,7 @@ export function BookingModal({ details, slot, setSlot }) {
                   <Input
                     name="name"
                     label="Student Name"
-                    className={"bg-[#222]"}
+                    className={"bg-gray-100 dark:bg-[#222]"}
                     placeholder="Enter your name"
                     value={user?.name}
                     readOnly
@@ -161,7 +164,7 @@ export function BookingModal({ details, slot, setSlot }) {
                     label="Email"
                     placeholder="Enter email"
                     type="email"
-                    className={"bg-[#222]"}
+                    className={"bg-gray-100 dark:bg-[#222]"}
                     value={user?.email}
                     readOnly
                     required
@@ -178,7 +181,7 @@ export function BookingModal({ details, slot, setSlot }) {
                     label="Phone Number"
                     placeholder="+880 "
                     type="number"
-                    className={"bg-[#222]"}
+                    className={"bg-gray-100 dark:bg-[#222]"}
                     required
                   />
                 </div>
@@ -196,7 +199,7 @@ export function BookingModal({ details, slot, setSlot }) {
                     label="Tutor Name"
                     placeholder="Tutor name"
                     value={details._id}
-                    className={"bg-[#222]"}
+                    className={"bg-gray-100 dark:bg-[#222]"}
                     readOnly
                     required
                   />
@@ -215,7 +218,7 @@ export function BookingModal({ details, slot, setSlot }) {
                     label="Tutor Name"
                     placeholder="Tutor name"
                     value={details.name}
-                    className={"bg-[#222]"}
+                    className={"bg-gray-100 dark:bg-[#222]"}
                     readOnly
                     required
                   />
