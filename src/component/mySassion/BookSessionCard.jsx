@@ -27,7 +27,7 @@ export default function BookSessionCard({ info, onDelete }) {
 
     try {
       const res = await fetch(
-        `http://localhost:5500/booking/cancel/${info._id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/cancel/${info._id}`,
         {
           method: "PATCH",
         },

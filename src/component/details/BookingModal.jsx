@@ -51,7 +51,7 @@ export function BookingModal({ details, slot, setSlot }) {
 
     const {data:tokenData} = await authClient.token()
 
-    const res = await fetch("http://localhost:5500/booking", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -78,20 +78,46 @@ export function BookingModal({ details, slot, setSlot }) {
     }
   };
 
-  useEffect(() => {
-    if (!user?.id || !details?._id) return;
+useEffect(() => {
+  if (!user?.id || !details?._id) return;
 
-    fetch(`http://localhost:5500/booking/${user.id}`)
-      .then((res) => res.json())
-      .then((bookings) => {
-        const hasActiveBooking = bookings.some(
-          (b) => b.tutorId === details._id && b.status === "booked",
-        );
+  const checkBooking = async () => {
+    try {
 
-        setIsAlreadyBooked(hasActiveBooking);
-      })
-      .catch(console.error);
-  }, [user?.id, details?._id]);
+      const { data: tokenData } = await authClient.token();
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`,
+        {
+          headers: {
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+        }
+      );
+
+      const bookings = await res.json();
+
+      if (!Array.isArray(bookings)) {
+        console.log("Invalid booking response:", bookings);
+        return;
+      }
+
+      const hasActiveBooking = bookings.some(
+        (b) =>
+          b.tutorId === details._id &&
+          b.status === "booked"
+      );
+
+      setIsAlreadyBooked(hasActiveBooking);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  checkBooking();
+
+}, [user?.id, details?._id]);
 
   return (
     <Modal isOpen={open} onOpenChange={setOpen}>

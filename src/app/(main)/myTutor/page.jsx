@@ -14,7 +14,7 @@ const MyTutors = async () => {
     headers: await headers()
   })
   const token = tokenData?.token
-  const res = await fetch(`http://localhost:5500/my-tutors/${user?.id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutors/${user?.id}`, {
     cache:"no-store",
     headers: {
       authorization: `Bearer ${token}`

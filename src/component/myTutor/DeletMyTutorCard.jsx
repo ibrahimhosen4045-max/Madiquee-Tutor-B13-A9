@@ -9,7 +9,7 @@ const DeletMyTutorCard = ({info, onDelete}) => {
 
     const deletetutors = async () => {
         setLoading(true)
-        const res = await fetch(`http://localhost:5500/tutors/${info._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${info._id}`, {
             method: "DELETE",
         })
         const data = await res.json()

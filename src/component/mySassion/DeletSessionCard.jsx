@@ -11,7 +11,7 @@ const DeletSessionCard = ({ bookingId, tutorName, onDelete}) => {
   const handleConfirmDelete = async () => {
     setIsDelete(true);
     
-      const res = await fetch(`http://localhost:5500/booking/${bookingId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json"

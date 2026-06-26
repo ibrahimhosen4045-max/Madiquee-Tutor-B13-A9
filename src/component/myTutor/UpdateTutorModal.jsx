@@ -31,7 +31,7 @@ const UpdateTutorModal = ({ info, onUpdate }) => {
   const handleUpdate = async () => {
 
   const res = await fetch(
-    `http://localhost:5500/tutors/${info._id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${info._id}`,
     {
       method:"PATCH",
       headers:{

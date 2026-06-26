@@ -4,7 +4,7 @@ import { FaArrowRightLong } from 'react-icons/fa6'
 import TutorSlider from './TutorSlider'
 
 const HomeTutorCard =async () => {
-    const res = await fetch('http://localhost:5500/featured')
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/featured`)
     const data = await res.json()
   return (
     <div className='pb-20'>

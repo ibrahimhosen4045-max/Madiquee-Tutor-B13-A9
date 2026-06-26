@@ -15,7 +15,7 @@ const page = async ({params}) => {
     })
     const token = tokenData?.token
     
-      const res = await fetch(`http://localhost:5500/tutors/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`, {
         cache: "no-store",
         headers: {
           authorization: `Bearer ${token}`

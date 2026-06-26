@@ -15,7 +15,7 @@ const user = session?.user
       headers: await headers()
     })
     const token = tokenData?.token
-  const res = await fetch(`http://localhost:5500/booking/${user?.id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user?.id}`, {
     cache: "no-store",
     headers: {
       authorization: `Bearer ${token}`
